@@ -1,0 +1,22 @@
+{
+  "name": "tamilnadu-van-travels",
+  "version": "1.0.0",
+  "description": "Professional Tamil Nadu Tourist Van Booking Website and Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "bin\\run-node.cmd server.js"
+  },
+  "keywords": [
+    "tamilnadu",
+    "tourist-van",
+    "tempo-traveller",
+    "van-rental",
+    "chennai",
+    "ooty",
+    "kodaikanal",
+    "madurai",
+    "tour-packages"
+  ],
+  "author": "Tamil Nadu Van Travels",
+  "license": "ISC"
+}
