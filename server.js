@@ -1,6 +1,6 @@
 /**
  * Tamil Nadu Van Travels - Professional Booking Platform & API Server
- * Built with Node.js & native SQLite (node:sqlite)
+ * Built with Node.js & SQLite (with universal serverless fallback)
  */
 
 const http = require('http');
@@ -8,111 +8,336 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 const crypto = require('crypto');
-const { DatabaseSync } = require('node:sqlite');
-const { estimateTamilNaduDistanceKm } = require('./public/js/data-districts.js');
 
 const PORT = process.env.PORT || 3000;
-const DB_FILE = path.join(__dirname, 'database.sqlite');
+const isVercel = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const DB_FILE = isVercel ? path.join('/tmp', 'database.sqlite') : path.join(__dirname, 'database.sqlite');
 const SEED_FILE = path.join(__dirname, 'data', 'seed.json');
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
-// --- DATABASE INITIALIZATION & SCHEMA ---
-const db = new DatabaseSync(DB_FILE);
+// --- DISTANCE ESTIMATOR (Tamil Nadu Distance Matrix) ---
+const POPULAR_TAMIL_NADU_LOCATIONS = [
+  { name: "Chennai", district: "Chennai", distFromChennai: 0 },
+  { name: "Coimbatore", district: "Coimbatore", distFromChennai: 505 },
+  { name: "Madurai", district: "Madurai", distFromChennai: 462 },
+  { name: "Tiruchirappalli", district: "Tiruchirappalli", distFromChennai: 330 },
+  { name: "Salem", district: "Salem", distFromChennai: 345 },
+  { name: "Tirunelveli", district: "Tirunelveli", distFromChennai: 625 },
+  { name: "Tiruppur", district: "Tiruppur", distFromChennai: 465 },
+  { name: "Erode", district: "Erode", distFromChennai: 400 },
+  { name: "Vellore", district: "Vellore", distFromChennai: 140 },
+  { name: "Kanchipuram", district: "Kanchipuram", distFromChennai: 75 },
+  { name: "Ooty", district: "Nilgiris (Ooty)", distFromChennai: 540 },
+  { name: "Coonoor", district: "Nilgiris (Ooty)", distFromChennai: 520 },
+  { name: "Kodaikanal", district: "Dindigul", distFromChennai: 525 },
+  { name: "Yercaud", district: "Salem", distFromChennai: 375 },
+  { name: "Mahabalipuram", district: "Chengalpattu", distFromChennai: 55 },
+  { name: "Kanyakumari", district: "Kanyakumari", distFromChennai: 705 },
+  { name: "Rameswaram", district: "Ramanathapuram", distFromChennai: 560 },
+  { name: "Thanjavur", district: "Thanjavur", distFromChennai: 345 },
+  { name: "Kumbakonam", district: "Thanjavur", distFromChennai: 295 },
+  { name: "Chidambaram", district: "Cuddalore", distFromChennai: 235 },
+  { name: "Tiruvannamalai", district: "Tiruvannamalai", distFromChennai: 195 }
+];
 
-// Enable WAL mode & foreign keys for performance and reliability
-db.exec(`PRAGMA journal_mode = WAL;`);
-db.exec(`PRAGMA synchronous = NORMAL;`);
+const DIRECT_ROUTES = {
+  "chennai_to_nilgiris (ooty)": 540,
+  "chennai_to_dindigul": 430,
+  "chennai_to_coimbatore": 505,
+  "chennai_to_madurai": 462,
+  "chennai_to_ramanathapuram": 560,
+  "chennai_to_chengalpattu": 55,
+  "chennai_to_kanchipuram": 75,
+  "chennai_to_thanjavur": 345,
+  "chennai_to_tiruchirappalli": 330,
+  "chennai_to_kanyakumari": 705,
+  "chennai_to_tiruvannamalai": 195,
+  "chennai_to_salem": 345,
+  "chennai_to_vellore": 140,
+  "coimbatore_to_nilgiris (ooty)": 86,
+  "coimbatore_to_dindigul": 155,
+  "coimbatore_to_madurai": 215,
+  "madurai_to_ramanathapuram": 170,
+  "madurai_to_kanyakumari": 245,
+  "madurai_to_tirunelveli": 160,
+  "tiruchirappalli_to_thanjavur": 58,
+  "tiruchirappalli_to_madurai": 135,
+  "salem_to_nilgiris (ooty)": 210,
+  "salem_to_coimbatore": 165
+};
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS settings (
-    key TEXT PRIMARY KEY,
-    value TEXT NOT NULL
-  );
+function estimateTamilNaduDistanceKm(pickupText, dropText) {
+  if (!pickupText || !dropText) return 150;
+  const cleanPick = pickupText.toLowerCase().trim();
+  const cleanDrop = dropText.toLowerCase().trim();
+  if (cleanPick === cleanDrop) return 25;
 
-  CREATE TABLE IF NOT EXISTS vehicles (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    slug TEXT UNIQUE NOT NULL,
-    capacity TEXT NOT NULL,
-    capacity_details TEXT NOT NULL,
-    category TEXT NOT NULL,
-    image_url TEXT NOT NULL,
-    ac_type TEXT NOT NULL,
-    luggage_capacity TEXT NOT NULL,
-    seating_layout TEXT NOT NULL,
-    price_per_km REAL NOT NULL,
-    min_km_per_day REAL NOT NULL,
-    driver_bata REAL NOT NULL,
-    night_halt REAL NOT NULL,
-    is_available INTEGER DEFAULT 1,
-    description TEXT NOT NULL,
-    amenities_json TEXT NOT NULL,
-    sort_order INTEGER DEFAULT 0
-  );
+  const findNode = (text) => {
+    return POPULAR_TAMIL_NADU_LOCATIONS.find(loc => 
+      text.includes(loc.name.toLowerCase()) || text.includes(loc.district.toLowerCase())
+    );
+  };
 
-  CREATE TABLE IF NOT EXISTS destinations (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    slug TEXT UNIQUE NOT NULL,
-    region TEXT NOT NULL,
-    image_url TEXT NOT NULL,
-    description TEXT NOT NULL,
-    best_time TEXT NOT NULL,
-    top_attractions_json TEXT NOT NULL,
-    sort_order INTEGER DEFAULT 0
-  );
+  const pNode = findNode(cleanPick);
+  const dNode = findNode(cleanDrop);
 
-  CREATE TABLE IF NOT EXISTS packages (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    slug TEXT UNIQUE NOT NULL,
-    duration TEXT NOT NULL,
-    duration_days INTEGER NOT NULL,
-    group_size TEXT NOT NULL,
-    starting_price REAL NOT NULL,
-    image_url TEXT NOT NULL,
-    available_vehicles_json TEXT NOT NULL,
-    highlights_json TEXT NOT NULL,
-    suggested_itinerary_json TEXT NOT NULL,
-    sort_order INTEGER DEFAULT 0
-  );
+  if (pNode && dNode) {
+    if (pNode.name === dNode.name) return 30;
+    const routeKey = `${pNode.district.toLowerCase()}_to_${dNode.district.toLowerCase()}`;
+    const reverseKey = `${dNode.district.toLowerCase()}_to_${pNode.district.toLowerCase()}`;
+    if (DIRECT_ROUTES[routeKey]) return DIRECT_ROUTES[routeKey];
+    if (DIRECT_ROUTES[reverseKey]) return DIRECT_ROUTES[reverseKey];
+    const delta = Math.abs(pNode.distFromChennai - dNode.distFromChennai);
+    if (delta > 0) return Math.round(Math.max(45, delta * 1.12));
+  }
+  return 220;
+}
 
-  CREATE TABLE IF NOT EXISTS enquiries (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    ref_number TEXT UNIQUE NOT NULL,
-    customer_name TEXT NOT NULL,
-    mobile TEXT NOT NULL,
-    whatsapp_number TEXT,
-    pickup_location TEXT NOT NULL,
-    destination TEXT NOT NULL,
-    pickup_date TEXT NOT NULL,
-    return_date TEXT,
-    pickup_time TEXT,
-    trip_type TEXT NOT NULL,
-    passengers INTEGER NOT NULL,
-    vehicle_type TEXT NOT NULL,
-    ac_preference TEXT DEFAULT 'AC',
-    additional_req TEXT,
-    instructions TEXT,
-    status TEXT DEFAULT 'Pending',
-    quoted_amount REAL DEFAULT 0,
-    admin_notes TEXT,
-    created_at TEXT NOT NULL,
-    updated_at TEXT NOT NULL
-  );
-`);
+// --- DATABASE INITIALIZATION (Native SQLite with Universal Fallback) ---
+let db;
+let useNativeSqlite = false;
+
+try {
+  const { DatabaseSync } = require('node:sqlite');
+  db = new DatabaseSync(DB_FILE);
+  db.exec(`PRAGMA journal_mode = WAL;`);
+  db.exec(`PRAGMA synchronous = NORMAL;`);
+  useNativeSqlite = true;
+
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS settings (
+      key TEXT PRIMARY KEY,
+      value TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS vehicles (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      slug TEXT UNIQUE NOT NULL,
+      capacity TEXT NOT NULL,
+      capacity_details TEXT NOT NULL,
+      category TEXT NOT NULL,
+      image_url TEXT NOT NULL,
+      ac_type TEXT NOT NULL,
+      luggage_capacity TEXT NOT NULL,
+      seating_layout TEXT NOT NULL,
+      price_per_km REAL NOT NULL,
+      min_km_per_day REAL NOT NULL,
+      driver_bata REAL NOT NULL,
+      night_halt REAL NOT NULL,
+      is_available INTEGER DEFAULT 1,
+      description TEXT NOT NULL,
+      amenities_json TEXT NOT NULL,
+      sort_order INTEGER DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS destinations (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      slug TEXT UNIQUE NOT NULL,
+      region TEXT NOT NULL,
+      image_url TEXT NOT NULL,
+      description TEXT NOT NULL,
+      best_time TEXT NOT NULL,
+      top_attractions_json TEXT NOT NULL,
+      sort_order INTEGER DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS packages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT NOT NULL,
+      slug TEXT UNIQUE NOT NULL,
+      duration TEXT NOT NULL,
+      duration_days INTEGER NOT NULL,
+      group_size TEXT NOT NULL,
+      starting_price REAL NOT NULL,
+      image_url TEXT NOT NULL,
+      available_vehicles_json TEXT NOT NULL,
+      highlights_json TEXT NOT NULL,
+      suggested_itinerary_json TEXT NOT NULL,
+      sort_order INTEGER DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS enquiries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ref_number TEXT UNIQUE NOT NULL,
+      customer_name TEXT NOT NULL,
+      mobile TEXT NOT NULL,
+      whatsapp_number TEXT,
+      pickup_location TEXT NOT NULL,
+      destination TEXT NOT NULL,
+      pickup_date TEXT NOT NULL,
+      return_date TEXT,
+      pickup_time TEXT,
+      trip_type TEXT NOT NULL,
+      passengers INTEGER NOT NULL,
+      vehicle_type TEXT NOT NULL,
+      ac_preference TEXT DEFAULT 'AC',
+      additional_req TEXT,
+      instructions TEXT,
+      status TEXT DEFAULT 'Pending',
+      quoted_amount REAL DEFAULT 0,
+      admin_notes TEXT,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+  `);
+} catch (e) {
+  // In-Memory Fallback Adapter for Serverless/Node environments without node:sqlite
+  const mem = {
+    settings: {},
+    vehicles: [],
+    destinations: [],
+    packages: [],
+    enquiries: [],
+    nextEnquiryId: 1
+  };
+
+  db = {
+    exec: () => {},
+    prepare: (sql) => {
+      const s = sql.trim();
+      return {
+        run: (...params) => {
+          if (s.includes('INSERT OR REPLACE INTO settings')) {
+            mem.settings[params[0]] = String(params[1]);
+          } else if (s.includes('INSERT INTO vehicles')) {
+            mem.vehicles.push({
+              id: mem.vehicles.length + 1,
+              name: params[0], slug: params[1], capacity: params[2], capacity_details: params[3],
+              category: params[4], image_url: params[5], ac_type: params[6], luggage_capacity: params[7],
+              seating_layout: params[8], price_per_km: params[9], min_km_per_day: params[10],
+              driver_bata: params[11], night_halt: params[12], is_available: params[13],
+              description: params[14], amenities_json: params[15], sort_order: params[16]
+            });
+          } else if (s.includes('INSERT INTO destinations')) {
+            mem.destinations.push({
+              id: mem.destinations.length + 1,
+              name: params[0], slug: params[1], region: params[2], image_url: params[3],
+              description: params[4], best_time: params[5], top_attractions_json: params[6], sort_order: params[7]
+            });
+          } else if (s.includes('INSERT INTO packages')) {
+            mem.packages.push({
+              id: mem.packages.length + 1,
+              title: params[0], slug: params[1], duration: params[2], duration_days: params[3],
+              group_size: params[4], starting_price: params[5], image_url: params[6],
+              available_vehicles_json: params[7], highlights_json: params[8],
+              suggested_itinerary_json: params[9], sort_order: params[10]
+            });
+          } else if (s.includes('INSERT INTO enquiries')) {
+            const newEnquiry = {
+              id: mem.nextEnquiryId++,
+              ref_number: params[0], customer_name: params[1], mobile: params[2], whatsapp_number: params[3],
+              pickup_location: params[4], destination: params[5], pickup_date: params[6], return_date: params[7],
+              pickup_time: params[8], trip_type: params[9], passengers: params[10], vehicle_type: params[11],
+              ac_preference: params[12], additional_req: params[13], instructions: params[14],
+              status: 'Pending', quoted_amount: 0, admin_notes: '',
+              created_at: params[15], updated_at: params[16]
+            };
+            mem.enquiries.unshift(newEnquiry);
+          } else if (s.includes('UPDATE enquiries')) {
+            const id = params[4];
+            const item = mem.enquiries.find(e => e.id === id);
+            if (item) {
+              item.status = params[0];
+              item.quoted_amount = params[1];
+              item.admin_notes = params[2];
+              item.updated_at = params[3];
+            }
+          } else if (s.includes('UPDATE vehicles')) {
+            const id = params[5];
+            const v = mem.vehicles.find(item => item.id === id);
+            if (v) {
+              v.price_per_km = params[0];
+              v.min_km_per_day = params[1];
+              v.driver_bata = params[2];
+              v.night_halt = params[3];
+              v.is_available = params[4];
+            }
+          }
+          return { changes: 1 };
+        },
+        get: (...params) => {
+          if (s.includes('COUNT(*) as count FROM vehicles WHERE is_available = 1')) {
+            return { count: mem.vehicles.filter(v => v.is_available).length };
+          }
+          if (s.includes('COUNT(*) as count FROM vehicles')) {
+            return { count: mem.vehicles.length };
+          }
+          if (s.includes("COUNT(*) as count FROM enquiries WHERE status = 'Pending'")) {
+            return { count: mem.enquiries.filter(e => e.status === 'Pending').length };
+          }
+          if (s.includes("COUNT(*) as count FROM enquiries WHERE status = 'Confirmed'")) {
+            return { count: mem.enquiries.filter(e => e.status === 'Confirmed').length };
+          }
+          if (s.includes("COUNT(*) as count FROM enquiries WHERE status = 'Quoted'")) {
+            return { count: mem.enquiries.filter(e => e.status === 'Quoted').length };
+          }
+          if (s.includes('COUNT(*) as count FROM enquiries')) {
+            return { count: mem.enquiries.length };
+          }
+          if (s.includes('FROM vehicles WHERE slug = ?')) {
+            return mem.vehicles.find(v => v.slug === params[0]) || null;
+          }
+          if (s.includes('FROM enquiries WHERE ref_number = ?')) {
+            return mem.enquiries.find(e => e.ref_number === params[0]) || null;
+          }
+          if (s.includes('FROM enquiries WHERE id = ?')) {
+            return mem.enquiries.find(e => e.id === params[0]) || null;
+          }
+          return null;
+        },
+        all: (...params) => {
+          if (s.includes('FROM settings')) {
+            return Object.entries(mem.settings).map(([key, value]) => ({ key, value }));
+          }
+          if (s.includes('FROM vehicles')) {
+            return [...mem.vehicles].sort((a,b) => (a.sort_order || 0) - (b.sort_order || 0));
+          }
+          if (s.includes('FROM destinations')) {
+            return [...mem.destinations].sort((a,b) => (a.sort_order || 0) - (b.sort_order || 0));
+          }
+          if (s.includes('FROM packages')) {
+            return [...mem.packages].sort((a,b) => (a.sort_order || 0) - (b.sort_order || 0));
+          }
+          if (s.includes('FROM enquiries')) {
+            let list = [...mem.enquiries];
+            if (params.length > 0 && params[0]) {
+              list = list.filter(e => e.status === params[0]);
+            }
+            if (s.includes('LIMIT 5')) {
+              list = list.slice(0, 5);
+            }
+            return list;
+          }
+          return [];
+        }
+      };
+    }
+  };
+}
 
 // --- SEED DATABASE IF EMPTY ---
 function seedDatabase() {
   const checkStmt = db.prepare('SELECT COUNT(*) as count FROM vehicles');
   const result = checkStmt.get();
-  if (result.count === 0 && fs.existsSync(SEED_FILE)) {
-    console.log('Seeding database from data/seed.json...');
-    const seedData = JSON.parse(fs.readFileSync(SEED_FILE, 'utf8'));
+  if (result.count === 0) {
+    let seedData;
+    if (fs.existsSync(SEED_FILE)) {
+      seedData = JSON.parse(fs.readFileSync(SEED_FILE, 'utf8'));
+    } else {
+      try {
+        seedData = require('./data/seed.json');
+      } catch (err) {
+        seedData = null;
+      }
+    }
+
+    if (!seedData) return;
 
     // Insert settings
     const insertSetting = db.prepare('INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)');
-    for (const [k, v] of Object.entries(seedData.settings)) {
+    for (const [k, v] of Object.entries(seedData.settings || {})) {
       insertSetting.run(k, String(v));
     }
 
@@ -125,7 +350,7 @@ function seedDatabase() {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    seedData.vehicles.forEach(v => {
+    (seedData.vehicles || []).forEach(v => {
       insertVeh.run(
         v.name, v.slug, v.capacity, v.capacity_details, v.category, v.image_url, v.ac_type,
         v.luggage_capacity, v.seating_layout, v.price_per_km, v.min_km_per_day, v.driver_bata,
@@ -140,7 +365,7 @@ function seedDatabase() {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    seedData.destinations.forEach((d, idx) => {
+    (seedData.destinations || []).forEach((d, idx) => {
       insertDest.run(
         d.name, d.slug, d.region, d.image_url, d.description, d.best_time,
         JSON.stringify(d.top_attractions), idx + 1
@@ -155,15 +380,13 @@ function seedDatabase() {
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    seedData.packages.forEach((p, idx) => {
+    (seedData.packages || []).forEach((p, idx) => {
       insertPkg.run(
         p.title, p.slug, p.duration, p.duration_days, p.group_size, p.starting_price,
         p.image_url, JSON.stringify(p.available_vehicles), JSON.stringify(p.highlights),
         JSON.stringify(p.suggested_itinerary), idx + 1
       );
     });
-
-    console.log('Database seeded successfully.');
   }
 }
 
@@ -235,7 +458,7 @@ function serveStatic(req, res, filePath) {
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(`<h1>404 Not Found</h1><p>The requested file ${req.url} does not exist.</p>`);
+      res.end(`<h1>404 Not Found</h1><p>The requested file does not exist.</p>`);
       return;
     }
     const ext = path.extname(filePath).toLowerCase();
@@ -243,7 +466,7 @@ function serveStatic(req, res, filePath) {
     res.writeHead(200, {
       'Content-Type': contentType,
       'Content-Length': stats.size,
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'public, max-age=3600'
     });
     fs.createReadStream(filePath).pipe(res);
   });
@@ -279,7 +502,7 @@ const server = http.createServer(async (req, res) => {
     const rows = db.prepare('SELECT * FROM vehicles ORDER BY sort_order ASC').all();
     const vehicles = rows.map(v => ({
       ...v,
-      amenities: JSON.parse(v.amenities_json || '[]')
+      amenities: typeof v.amenities_json === 'string' ? JSON.parse(v.amenities_json || '[]') : (v.amenities_json || [])
     }));
     return sendJson(res, 200, { success: true, vehicles });
   }
@@ -289,7 +512,7 @@ const server = http.createServer(async (req, res) => {
     const rows = db.prepare('SELECT * FROM destinations ORDER BY sort_order ASC').all();
     const destinations = rows.map(d => ({
       ...d,
-      top_attractions: JSON.parse(d.top_attractions_json || '[]')
+      top_attractions: typeof d.top_attractions_json === 'string' ? JSON.parse(d.top_attractions_json || '[]') : (d.top_attractions_json || [])
     }));
     return sendJson(res, 200, { success: true, destinations });
   }
@@ -299,9 +522,9 @@ const server = http.createServer(async (req, res) => {
     const rows = db.prepare('SELECT * FROM packages ORDER BY sort_order ASC').all();
     const packages = rows.map(p => ({
       ...p,
-      available_vehicles: JSON.parse(p.available_vehicles_json || '[]'),
-      highlights: JSON.parse(p.highlights_json || '[]'),
-      suggested_itinerary: JSON.parse(p.suggested_itinerary_json || '[]')
+      available_vehicles: typeof p.available_vehicles_json === 'string' ? JSON.parse(p.available_vehicles_json || '[]') : (p.available_vehicles_json || []),
+      highlights: typeof p.highlights_json === 'string' ? JSON.parse(p.highlights_json || '[]') : (p.highlights_json || []),
+      suggested_itinerary: typeof p.suggested_itinerary_json === 'string' ? JSON.parse(p.suggested_itinerary_json || '[]') : (p.suggested_itinerary_json || [])
     }));
     return sendJson(res, 200, { success: true, packages });
   }
@@ -333,7 +556,7 @@ const server = http.createServer(async (req, res) => {
 
       // Generate Unique Reference ID: TNV-2026-XXXX
       const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-      const refNumber = `TNV-${new Date().getFullYear()}-${randomSuffix}`;
+      const refNumber = `TNV-2026-${randomSuffix}`;
       const now = new Date().toISOString();
 
       const insertStmt = db.prepare(`
@@ -436,14 +659,7 @@ Please provide quotation and availability. Thank you!`;
         return sendJson(res, 404, { success: false, error: 'Vehicle not found' });
       }
 
-      // Distance estimation logic
-      let estOneWayKm = 150;
-      if (typeof estimateTamilNaduDistanceKm === 'function') {
-        estOneWayKm = estimateTamilNaduDistanceKm(pickup, destination);
-      } else {
-        estOneWayKm = 180;
-      }
-
+      const estOneWayKm = estimateTamilNaduDistanceKm(pickup, destination);
       const numDays = Math.max(1, parseInt(days, 10) || 1);
       const isRoundTrip = trip_type === 'Round-Trip' || trip_type === 'Multi-Day Outstation';
       const isLocal = trip_type === 'Local Sightseeing';
@@ -457,8 +673,7 @@ Please provide quotation and availability. Thank you!`;
         const actualEstKm = estOneWayKm * 2;
         totalBillableKm = Math.max(actualEstKm, minKmCharge);
       } else {
-        // One-way: charged return dead km or minimum standard
-        totalBillableKm = Math.max(estOneWayKm * 1.5, minKmCharge);
+        totalBillableKm = Math.max(Math.round(estOneWayKm * 1.5), minKmCharge);
       }
 
       const kmFare = totalBillableKm * vehicle.price_per_km;
@@ -493,8 +708,6 @@ Please provide quotation and availability. Thank you!`;
   }
 
   // --- ADMIN AUTHENTICATION & MANAGEMENT ENDPOINTS ---
-
-  // Helper auth check middleware
   function isAuthorizedAdmin(req) {
     const authHeader = req.headers['authorization'];
     if (!authHeader) return false;
@@ -656,18 +869,14 @@ Please provide quotation and availability. Thank you!`;
   }
 
   // --- STATIC FILES & PAGE ROUTING ---
-
-  // Programmatic SEO routes: /routes/chennai-to-ooty, etc.
   if (pathname.startsWith('/routes/')) {
     return serveStatic(req, res, path.join(PUBLIC_DIR, 'route.html'));
   }
 
-  // Admin dashboard URL
   if (pathname === '/admin' || pathname === '/admin/') {
     return serveStatic(req, res, path.join(PUBLIC_DIR, 'admin.html'));
   }
 
-  // Root or static file
   let safePath = path.normalize(pathname).replace(/^(\.\.[\/\\])+/, '');
   if (safePath === '/' || safePath === '\\') {
     safePath = '/index.html';
@@ -677,12 +886,16 @@ Please provide quotation and availability. Thank you!`;
   serveStatic(req, res, targetFile);
 });
 
-// Start listening
-server.listen(PORT, () => {
-  console.log(`=======================================================`);
-  console.log(`  Tamil Nadu Van Travels Server is Live!`);
-  console.log(`  Access Website:    http://localhost:${PORT}`);
-  console.log(`  Admin Dashboard:   http://localhost:${PORT}/admin`);
-  console.log(`  Default Admin PIN: admin123`);
-  console.log(`=======================================================`);
-});
+// Start listening if not running inside Vercel serverless wrapper
+if (!isVercel) {
+  server.listen(PORT, () => {
+    console.log(`=======================================================`);
+    console.log(`  Tamil Nadu Van Travels Server is Live!`);
+    console.log(`  Access Website:    http://localhost:${PORT}`);
+    console.log(`  Admin Dashboard:   http://localhost:${PORT}/admin`);
+    console.log(`  Default Admin PIN: admin123`);
+    console.log(`=======================================================`);
+  });
+}
+
+module.exports = server;
