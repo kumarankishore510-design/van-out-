@@ -1,0 +1,429 @@
+{
+  "settings": {
+    "company_name": "Tamil Nadu Van Travels",
+    "tagline": "Your Journey, Our Responsibility — Explore Tamil Nadu With Comfort.",
+    "phone": "+91 94440 12345",
+    "whatsapp_number": "919444012345",
+    "email": "booking@tamilnaduvanstravels.com",
+    "office_address": "No. 45, GST Road, Near Kathipara Junction, Guindy, Chennai, Tamil Nadu - 600032",
+    "operating_hours": "24 Hours / 7 Days a Week (Booking & Travel Support)",
+    "admin_pin": "admin123",
+    "pricing_disclaimer": "Note: Rates are illustrative and based on standard Tamil Nadu tourism norms. Fuel, vehicle maintenance, and driver allowance are included. Highway toll plaza fees, parking fees, and interstate/hill station entry permits are payable at actuals.",
+    "facebook_url": "https://facebook.com",
+    "instagram_url": "https://instagram.com",
+    "youtube_url": "https://youtube.com"
+  },
+  "vehicles": [
+    {
+      "name": "18-Seater Luxury Tourist Van",
+      "slug": "18-seater-tourist-van",
+      "capacity": "18 Seater",
+      "capacity_details": "18 Passengers + 1 Professional Chauffeur",
+      "category": "18-Seater",
+      "image_url": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
+      "ac_type": "Dual-Zone High Capacity Chilled AC",
+      "luggage_capacity": "15-18 Large Bags + Dedicated Luggage Boot",
+      "seating_layout": "2x1 Luxury Pushback Recliners with Armrests",
+      "price_per_km": 22,
+      "min_km_per_day": 250,
+      "driver_bata": 600,
+      "night_halt": 300,
+      "is_available": 1,
+      "description": "Ideal for extended family trips, temple pilgrimages, and small corporate outings. Features plush 2x1 pushback bucket seats, dual AC blowers, clear view tinted glass, and ample boot space for luggage.",
+      "amenities": [
+        "Plush 2x1 Pushback Seats",
+        "Dual Chilled AC Units",
+        "Individual Mobile USB Chargers",
+        "LED TV & Bluetooth Music System",
+        "Reading Lights at Every Row",
+        "Ample Rear Luggage Space",
+        "First Aid & Emergency Kit",
+        "Experienced Tamil & English Driver"
+      ],
+      "sort_order": 1
+    },
+    {
+      "name": "19-Seater Executive Tourist Van",
+      "slug": "19-seater-tourist-van",
+      "capacity": "19 Seater",
+      "capacity_details": "19 Passengers + 1 Professional Chauffeur",
+      "category": "19-Seater",
+      "image_url": "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80",
+      "ac_type": "Individual Ducted Roof AC Vents",
+      "luggage_capacity": "18-20 Bags + Top Luggage Carrier with Tarpaulin Cover",
+      "seating_layout": "2x2 High-Back Ergonomic Recliners",
+      "price_per_km": 24,
+      "min_km_per_day": 250,
+      "driver_bata": 650,
+      "night_halt": 350,
+      "is_available": 1,
+      "description": "Designed for long-distance comfort across Tamil Nadu highways and Western Ghats. Offers ducted individual AC controls, spacious legroom, high roof clearance, and dedicated luggage carriers.",
+      "amenities": [
+        "Individual Ducted AC Vents",
+        "High-Back Reclining Seats",
+        "24-inch HD Entertainment Display",
+        "Surround Sound System",
+        "Individual USB Ports",
+        "Spacious Gangway Walkway",
+        "Top Roof Carrier with Rain Guard",
+        "24/7 Roadside Assistance"
+      ],
+      "sort_order": 2
+    },
+    {
+      "name": "21-Seater Grand Tourist Van",
+      "slug": "21-seater-tourist-van",
+      "capacity": "21 Seater",
+      "capacity_details": "21 Passengers + 1 Professional Chauffeur",
+      "category": "21-Seater",
+      "image_url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1000&q=80",
+      "ac_type": "Multi-Blower Powerful Air Conditioning",
+      "luggage_capacity": "20-22 Bags + Extra Deep Rear Trunk",
+      "seating_layout": "2x1 Maharaja Seating Style with Wide Aisle",
+      "price_per_km": 26,
+      "min_km_per_day": 250,
+      "driver_bata": 700,
+      "night_halt": 400,
+      "is_available": 1,
+      "description": "Premium Maharaja class comfort for wedding parties, college tours, and multi-day heritage circuits. Offers smooth air-cushioned suspension, tour guide microphone system, and panoramic windows.",
+      "amenities": [
+        "Maharaja Style Ultra Comfort Recliners",
+        "Whisper-Quiet Multi-Blower AC",
+        "Guide Microphone & PA System",
+        "Air Suspension for Ghat Roads",
+        "Full Tinted Panoramic Windows",
+        "Deep Rear Boot & Overhead Racks",
+        "Clean Sanitized Interiors",
+        "Uniformed Senior Driver"
+      ],
+      "sort_order": 3
+    },
+    {
+      "name": "22-Seater Super Deluxe Van",
+      "slug": "22-seater-tourist-van",
+      "capacity": "22 Seater",
+      "capacity_details": "22 Passengers + 1 Professional Chauffeur",
+      "category": "22-Seater",
+      "image_url": "https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&w=1000&q=80",
+      "ac_type": "Full Dual Climate Control AC",
+      "luggage_capacity": "25+ Large Strolley Bags + Heavy Duty Roof Carrier",
+      "seating_layout": "2x2 Wide Luxury Coach Reclining Seats",
+      "price_per_km": 28,
+      "min_km_per_day": 300,
+      "driver_bata": 800,
+      "night_halt": 450,
+      "is_available": 1,
+      "description": "Maximum capacity van for large family reunions, corporate off-sites, and school tours. Built on a heavy-duty chassis with robust safety features, speed governors, and expansive luggage space.",
+      "amenities": [
+        "Heavy Duty Dual Compressor AC",
+        "Wide Coach Recliners with Headrests",
+        "Microphone System for Sightseeing",
+        "High Capacity Roof & Boot Cargo",
+        "Speed Governor & GPS Tracking",
+        "Emergency Exit System",
+        "Smooth Long-Haul Highway Cruiser",
+        "Expert Route-Specialist Driver"
+      ],
+      "sort_order": 4
+    }
+  ],
+  "destinations": [
+    {
+      "name": "Chennai",
+      "slug": "chennai",
+      "region": "North Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1000&q=80",
+      "description": "Tamil Nadu's bustling capital city featuring the iconic Marina Beach, Kapaleeshwarar Temple, Fort St. George, and vibrant cultural landmarks.",
+      "best_time": "November to February",
+      "top_attractions": ["Marina Beach", "Kapaleeshwarar Temple", "Santhome Cathedral", "Government Museum", "Guindy National Park"]
+    },
+    {
+      "name": "Mahabalipuram",
+      "slug": "mahabalipuram",
+      "region": "North Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1600100397608-f010f4448553?auto=format&fit=crop&w=1000&q=80",
+      "description": "UNESCO World Heritage coastal haven famous for 7th-century Shore Temples, Pancha Rathas, Arjuna's Penance, and oceanfront breeze along the ECR.",
+      "best_time": "October to March",
+      "top_attractions": ["Shore Temple", "Pancha Rathas", "Arjuna's Penance", "Krishna's Butterball", "ECR Coastal Drive"]
+    },
+    {
+      "name": "Kanchipuram",
+      "slug": "kanchipuram",
+      "region": "North Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1621847468516-1ed5d0df56fe?auto=format&fit=crop&w=1000&q=80",
+      "description": "The City of Thousand Temples and world-renowned Kanchipuram silk sarees. Home to Ekambareswarar, Varadharaja Perumal, and Kailasanathar temples.",
+      "best_time": "September to March",
+      "top_attractions": ["Ekambareswarar Temple", "Kamakshi Amman Temple", "Varadharaja Perumal Temple", "Kailasanathar Temple", "Silk Weaving Centers"]
+    },
+    {
+      "name": "Vellore",
+      "slug": "vellore",
+      "region": "North Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1000&q=80",
+      "description": "Historic gateway home to the gleaming Sripuram Golden Temple covered in gold foil, the 16th-century Vellore Fort, and Jalakandeswarar Temple.",
+      "best_time": "October to February",
+      "top_attractions": ["Sripuram Golden Temple", "Vellore Fort", "Jalakandeswarar Temple", "Government Museum", "Amirthi Zoological Park"]
+    },
+    {
+      "name": "Tiruvannamalai",
+      "slug": "tiruvannamalai",
+      "region": "North Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1596405835955-467db21018e1?auto=format&fit=crop&w=1000&q=80",
+      "description": "Sacred spiritual sanctuary of the Agni Lingam at Arunachaleswarar Temple, Ramana Maharshi Ashram, and the holy 14 km Girivalam circumambulation path.",
+      "best_time": "October to March (Karthigai Deepam)",
+      "top_attractions": ["Arunachaleswarar Temple", "Ramana Maharshi Ashram", "Girivalam Path", "Virupaksha Cave", "Seshadri Swamigal Ashram"]
+    },
+    {
+      "name": "Salem",
+      "slug": "salem",
+      "region": "West / Kongu",
+      "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Mango City and key commercial center nestled at the foot of the Shevaroy Hills. Gateway to Yercaud, steel plants, and renowned textile markets.",
+      "best_time": "October to March",
+      "top_attractions": ["Kottai Mariamman Temple", "1008 Shiva Temple", "Mettur Dam nearby", "Sugavaneshwarar Temple", "Kurumbapatti Zoological Park"]
+    },
+    {
+      "name": "Coimbatore",
+      "slug": "coimbatore",
+      "region": "West / Kongu",
+      "image_url": "https://images.unsplash.com/photo-1588416936097-41850ab3d86d?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Manchester of South India and gateway to the Western Ghats. Famous for Isha Yoga Center's 112ft Adiyogi Shiva bust and Marudhamalai Temple.",
+      "best_time": "September to March",
+      "top_attractions": ["Isha Yoga Center & Adiyogi", "Marudhamalai Murugan Temple", "Perur Pateeswarar Temple", "Gass Forest Museum", "Siruvani Waterfalls"]
+    },
+    {
+      "name": "Yercaud",
+      "slug": "yercaud",
+      "region": "West / Kongu",
+      "image_url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Jewel of the South in the Shevaroy range. A serene, budget-friendly hill station known for tranquil Emerald Lake, coffee estates, and viewpoint cliffs.",
+      "best_time": "October to June",
+      "top_attractions": ["Yercaud Lake & Boating", "Pagoda Point", "Lady's Seat & Gent's Seat", "Botanical Garden", "Killiyur Waterfalls"]
+    },
+    {
+      "name": "Ooty",
+      "slug": "ooty",
+      "region": "Hills & Western Ghats",
+      "image_url": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Queen of Hill Stations in the Nilgiris. Renowned for lush rolling tea gardens, Government Botanical Garden, Ooty Lake, and Doddabetta Peak.",
+      "best_time": "October to June",
+      "top_attractions": ["Ooty Botanical Garden", "Ooty Lake & Boating", "Doddabetta Peak", "Nilgiri Mountain Railway", "Pykara Waterfalls & Lake"]
+    },
+    {
+      "name": "Kodaikanal",
+      "slug": "kodaikanal",
+      "region": "Hills & Western Ghats",
+      "image_url": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Princess of Hill Stations in the Palani Hills. Famous for its star-shaped Kodai Lake, misty Coaker's Walk, Pillar Rocks, and pine forests.",
+      "best_time": "September to May",
+      "top_attractions": ["Kodai Star Lake", "Coaker's Walk", "Pillar Rocks", "Bryant Park", "Pine Forest & Guna Caves"]
+    },
+    {
+      "name": "Thanjavur",
+      "slug": "thanjavur",
+      "region": "Central & Delta",
+      "image_url": "https://images.unsplash.com/photo-1620766182966-c6eb5ed2b788?auto=format&fit=crop&w=1000&q=80",
+      "description": "The cultural epicenter of the Chola Empire. Marvel at the 1,000-year-old Brihadisvara Great Living Chola Temple (Big Temple) and Maratha Palace.",
+      "best_time": "October to March",
+      "top_attractions": ["Brihadisvara Temple", "Thanjavur Royal Palace", "Saraswathi Mahal Library", "Schwartz Church", "Thanjavur Art Gallery"]
+    },
+    {
+      "name": "Tiruchirappalli",
+      "slug": "tiruchirappalli",
+      "region": "Central & Delta",
+      "image_url": "https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1000&q=80",
+      "description": "Historic city along the Cauvery River, celebrated for the towering Rockfort Ucchi Pillayar Temple and Srirangam Ranganathaswamy Temple complex.",
+      "best_time": "October to March",
+      "top_attractions": ["Rockfort Ucchi Pillayar Temple", "Sri Ranganathaswamy Temple", "Jambukeswarar Temple", "Kallanai Dam (Grand Anicut)", "Mukkombu"]
+    },
+    {
+      "name": "Kumbakonam",
+      "slug": "kumbakonam",
+      "region": "Central & Delta",
+      "image_url": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Temple City renowned for the grand Mahamaham tank and gateway to the 9 sacred Navagraha temples and Airavatesvara Temple in Darasuram.",
+      "best_time": "October to March",
+      "top_attractions": ["Mahamaham Tank", "Adi Kumbeswarar Temple", "Sarangapani Temple", "Airavatesvara Temple Darasuram", "Navagraha Pilgrimage Route"]
+    },
+    {
+      "name": "Chidambaram",
+      "slug": "chidambaram",
+      "region": "Central & Delta",
+      "image_url": "https://images.unsplash.com/photo-1621847468516-1ed5d0df56fe?auto=format&fit=crop&w=1000&q=80",
+      "description": "Home of Lord Nataraja performing the cosmic Ananda Tandava dance in the iconic Chidambaram Thillai Nataraja Temple with its golden roofed shrine.",
+      "best_time": "October to March",
+      "top_attractions": ["Thillai Nataraja Temple", "Pichavaram Mangrove Forest Boating", "Thillai Kali Amman Temple", "Annamalai University Campus", "Vaitheeswaran Koil nearby"]
+    },
+    {
+      "name": "Madurai",
+      "slug": "madurai",
+      "region": "South Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1609137144822-2779774391e4?auto=format&fit=crop&w=1000&q=80",
+      "description": "The Athens of the East and Jasmine City, centered around the breathtaking towers of the ancient Meenakshi Sundareswarar Temple and Thirumalai Nayakkar Palace.",
+      "best_time": "October to March",
+      "top_attractions": ["Meenakshi Amman Temple", "Thirumalai Nayakkar Mahal", "Gandhi Memorial Museum", "Alagar Kovil & Pazhamudircholai", "Madurai Night Food Tour"]
+    },
+    {
+      "name": "Rameswaram",
+      "slug": "rameswaram",
+      "region": "South Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1000&q=80",
+      "description": "Spiritual island town connected via the legendary Pamban Bridge. Home to Ramanathaswamy Temple's longest pillared corridors, 22 theerthams, and Dhanushkodi.",
+      "best_time": "October to April",
+      "top_attractions": ["Ramanathaswamy Temple & 22 Theerthams", "Historic Pamban Bridge", "Dhanushkodi Ghost Town & Beach", "Dr. APJ Abdul Kalam Memorial", "Agni Theertham"]
+    },
+    {
+      "name": "Tirunelveli",
+      "slug": "tirunelveli",
+      "region": "South Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
+      "description": "Historic city situated on the banks of the Thamirabarani River. World-famous for the monumental Nellaiappar Temple, Tirunelveli Halwa, and Courtallam Falls nearby.",
+      "best_time": "October to March",
+      "top_attractions": ["Nellaiappar Temple & Musical Pillars", "Courtallam Main & Five Falls", "Manimuthar Dam & Waterfalls", "Thamirabarani Riverbanks", "Authentic Halwa Shops"]
+    },
+    {
+      "name": "Kanyakumari",
+      "slug": "kanyakumari",
+      "region": "South Tamil Nadu",
+      "image_url": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+      "description": "The southernmost tip of mainland India where the Indian Ocean, Arabian Sea, and Bay of Bengal converge. Witness simultaneous sunrise and sunset, and Vivekananda Rock Memorial.",
+      "best_time": "October to March",
+      "top_attractions": ["Vivekananda Rock Memorial", "133-ft Thiruvalluvar Statue", "Triveni Sangam & Sunset View", "Bhagavathy Amman Temple", "Padmanabhapuram Palace nearby"]
+    }
+  ],
+  "packages": [
+    {
+      "title": "Chennai City Sightseeing Tour",
+      "slug": "chennai-city-sightseeing",
+      "duration": "1 to 2 Days",
+      "duration_days": 1,
+      "group_size": "Family & Corporate Groups (10 - 22 Pax)",
+      "starting_price": 5500,
+      "image_url": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Marina Beach", "Kapaleeshwarar Temple", "Santhome Basilica", "Government Museum", "Guindy National Park"],
+      "suggested_itinerary": [
+        "08:30 AM - Pickup from door/hotel in Chennai in comfortable AC tourist van.",
+        "09:30 AM - Darshan at historic Mylapore Kapaleeshwarar Temple & tank walk.",
+        "11:00 AM - Visit Santhome Cathedral Basilica & light house view.",
+        "01:00 PM - Lunch at authentic traditional South Indian restaurant.",
+        "02:30 PM - Tour Government Museum Egmore & National Art Gallery.",
+        "05:00 PM - Relaxing sunset stroll along Marina Beach & food stalls.",
+        "07:30 PM - Return drop at your doorstep in Chennai."
+      ]
+    },
+    {
+      "title": "Mahabalipuram & ECR One-Day Tour",
+      "slug": "mahabalipuram-one-day-tour",
+      "duration": "1 Day (8 to 10 Hours)",
+      "duration_days": 1,
+      "group_size": "10 to 22 Passengers",
+      "starting_price": 6000,
+      "image_url": "https://images.unsplash.com/photo-1600100397608-f010f4448553?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Shore Temple", "Pancha Rathas", "Krishna's Butterball", "Arjuna's Penance", "ECR Coastal Drive"],
+      "suggested_itinerary": [
+        "07:30 AM - Departure from Chennai along the scenic East Coast Road (ECR).",
+        "08:30 AM - Optional stop at DakshinaChitra Heritage Museum / Kovalam beach.",
+        "10:00 AM - Explore UNESCO World Heritage Shore Temple complex & ocean views.",
+        "11:30 AM - Marvel at Five Rathas (Pancha Pandava Rathas) carved monoliths.",
+        "01:00 PM - Fresh seafood & vegetarian lunch at beachside cafe.",
+        "02:30 PM - Visit Arjuna's Penance, Krishna's Butterball & lighthouse.",
+        "04:30 PM - Souvenir stone carving market & beach relaxation.",
+        "06:30 PM - Return drive to Chennai with doorstep drop."
+      ]
+    },
+    {
+      "title": "Ooty & Coonoor Nilgiri Hill Station Holiday",
+      "slug": "ooty-hill-station-trip",
+      "duration": "3 Days / 2 Nights",
+      "duration_days": 3,
+      "group_size": "12 to 22 Passengers",
+      "starting_price": 24000,
+      "image_url": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Ooty Botanical Garden", "Ooty Lake Boating", "Doddabetta Peak", "Tea Factory & Museum", "Coonoor Sim's Park"],
+      "suggested_itinerary": [
+        "Day 1: Pickup from Chennai / Coimbatore / Bangalore, scenic ghat road drive, hotel check-in in Ooty, evening at Ooty Lake & Mall Road.",
+        "Day 2: Full day sightseeing at Government Botanical Garden, Rose Garden, Doddabetta Peak, and visit to Nilgiri Tea Factory with fresh chocolate tasting.",
+        "Day 3: Scenic excursion to Coonoor - Sim's Park, Lamb's Rock, Dolphin's Nose viewpoint, followed by return journey."
+      ]
+    },
+    {
+      "title": "Kodaikanal Family Holiday Tour",
+      "slug": "kodaikanal-family-holiday",
+      "duration": "3 Days / 2 Nights",
+      "duration_days": 3,
+      "group_size": "12 to 22 Passengers",
+      "starting_price": 26000,
+      "image_url": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Kodai Star Lake", "Coaker's Walk", "Pillar Rocks", "Pine Forest", "Silver Cascade Waterfall"],
+      "suggested_itinerary": [
+        "Day 1: Departure from Madurai / Trichy / Chennai, scenic drive up Palani Hills, Silver Cascade stop, hotel check-in, evening cycling & boating at Kodai Lake.",
+        "Day 2: Morning misty stroll at Coaker's Walk, Bryant Park, Pillar Rocks, Guna Caves, and scenic Pine Forest photography.",
+        "Day 3: Visit Kurinji Andavar Temple, solar observatory viewpoint, souvenir homemade chocolate shopping, followed by pleasant return trip."
+      ]
+    },
+    {
+      "title": "Madurai & Rameswaram Spiritual Circuit",
+      "slug": "madurai-rameswaram-temple-tour",
+      "duration": "3 Days / 2 Nights",
+      "duration_days": 3,
+      "group_size": "12 to 22 Passengers",
+      "starting_price": 22000,
+      "image_url": "https://images.unsplash.com/photo-1609137144822-2779774391e4?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Meenakshi Amman Temple", "Thirumalai Nayakkar Palace", "Rameswaram Ramanathaswamy Temple", "22 Kundams Theertha Snanam", "Dhanushkodi"],
+      "suggested_itinerary": [
+        "Day 1: Morning arrival in Madurai, special darshan at Meenakshi Amman Temple, afternoon visit to Thirumalai Nayakkar Mahal, evening drive to Rameswaram.",
+        "Day 2: Early morning sacred 22 Theertham holy dip and darshan at Ramanathaswamy Temple, Pamban bridge crossing, afternoon excursion to Dhanushkodi beach & Rama Sethu point.",
+        "Day 3: Visit Dr. APJ Abdul Kalam Memorial, return journey with optional stop at Tirupparankunram Murugan Temple."
+      ]
+    },
+    {
+      "title": "Thanjavur, Kumbakonam & Trichy Chola Heritage Tour",
+      "slug": "thanjavur-heritage-tour",
+      "duration": "2 Days / 1 Night",
+      "duration_days": 2,
+      "group_size": "12 to 22 Passengers",
+      "starting_price": 16000,
+      "image_url": "https://images.unsplash.com/photo-1620766182966-c6eb5ed2b788?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Brihadisvara Great Chola Temple", "Thanjavur Maratha Palace", "Srirangam Ranganathaswamy Temple", "Trichy Rockfort Temple"],
+      "suggested_itinerary": [
+        "Day 1: Early departure, reach Thanjavur, marvel at UNESCO Brihadisvara (Big Temple), explore Maratha Royal Palace and Art Gallery, evening Aarti at Kumbakonam.",
+        "Day 2: Morning visit to Srirangam Ranganathaswamy Temple (largest functioning Hindu temple complex in the world), climb Trichy Rockfort Ucchi Pillayar Temple, return drop."
+      ]
+    },
+    {
+      "title": "Kanyakumari, Suchindram & Padmanabhapuram Sightseeing",
+      "slug": "kanyakumari-sightseeing",
+      "duration": "2 to 3 Days",
+      "duration_days": 2,
+      "group_size": "12 to 22 Passengers",
+      "starting_price": 18000,
+      "image_url": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Triveni Sangam Sunrise", "Vivekananda Rock Memorial", "Thiruvalluvar Statue Ferry", "Padmanabhapuram Palace", "Suchindram Thanumalayan Temple"],
+      "suggested_itinerary": [
+        "Day 1: Journey to Kanyakumari, check-in, ferry ride to Vivekananda Rock Memorial and 133-ft Thiruvalluvar Statue, sunset view at Triveni Sangam.",
+        "Day 2: Early 05:45 AM sunrise watch over the ocean, darshan at Bhagavathy Amman Temple, excursion to Suchindram Temple (Trimurti shrine), and the majestic wooden Padmanabhapuram Palace, evening return."
+      ]
+    },
+    {
+      "title": "Grand Tamil Nadu Customized Multi-Day Tour",
+      "slug": "customized-multi-day-tour",
+      "duration": "5 to 10 Days (Customizable)",
+      "duration_days": 7,
+      "group_size": "10 to 22 Passengers",
+      "starting_price": 55000,
+      "image_url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1000&q=80",
+      "available_vehicles": ["18-Seater", "19-Seater", "21-Seater", "22-Seater"],
+      "highlights": ["Chennai", "Mahabalipuram", "Thanjavur", "Madurai", "Rameswaram", "Kanyakumari", "Ooty"],
+      "suggested_itinerary": [
+        "Completely flexible itinerary tailored to your group's preferences. Choose your pickup district, custom route through heritage temples, hill resorts, coastal highways, and wildlife reserves across all 38 districts of Tamil Nadu. Dedicated van and experienced chauffeur for the entire journey."
+      ]
+    }
+  ]
+}
