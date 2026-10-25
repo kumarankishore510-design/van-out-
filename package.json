@@ -4,7 +4,11 @@
   "description": "Professional Tamil Nadu Tourist Van Booking Website and Management System",
   "main": "server.js",
   "scripts": {
-    "start": "bin\\run-node.cmd server.js"
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build OK')\""
+  },
+  "engines": {
+    "node": ">=20.x"
   },
   "keywords": [
     "tamilnadu",
