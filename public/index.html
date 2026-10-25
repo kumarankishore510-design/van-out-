@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamil Nadu Van Travels — Premium Tourist Van Bookings Across All 38 Districts</title>
+  <meta name="description" content="Book 18, 19, 21, and 22-seater luxury tourist vans across all 38 districts of Tamil Nadu. Transparent pricing, pushback AC seats, expert drivers, and instant WhatsApp quotes.">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%3E<text y=%2226%22 font-size=%2226%22>🚐</text></svg>">
+  <!-- Google Rich Snippets Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Tamil Nadu Van Travels",
+    "image": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
+    "description": "Premium 18, 19, 21, and 22-seater tourist van rentals for outstation group tours, temple pilgrimages, and family holidays across all 38 districts of Tamil Nadu.",
+    "telephone": "+919444012345",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 45, GST Road, Guindy",
+      "addressLocality": "Chennai",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "600032",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "13.0067",
+      "longitude": "80.2026"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "priceRange": "₹22 - ₹28 per km",
+    "areaServed": "Tamil Nadu, India",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "128"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Notification Bar -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-inner">
+      <div>
+        <span>📍 Serving All 38 Districts of Tamil Nadu</span>
+        <span style="margin: 0 8px; opacity: 0.4;">|</span>
+        <span class="dyn-company-hours">24/7 Booking Support</span>
+      </div>
+      <div class="top-notice-contact">
+        <a href="tel:+919444012345" class="dyn-company-phone">📞 +91 94440 12345</a>
+        <a href="/admin" style="color: #5eead4; font-weight: 700;">🔐 Admin Portal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Site Navigation -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">🚐</div>
+        <div>
+          <div class="brand-title dyn-company-name">Tamil Nadu Van Travels</div>
+          <div class="brand-sub">Tour & Outstation Fleet</div>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#vehicles">Our Vehicles</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#packages">Tour Packages</a></li>
+        <li><a href="#fare-calculator">Fare Calculator</a></li>
+        <li><a href="#why-us">Why Choose Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn btn-outline btn-sm" onclick="openTrackingModal()">🔍 Track Booking</button>
+        <button class="btn btn-primary" onclick="openBookingModal()">Book Your Van</button>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Hero Section & Quick Booking Bar -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tagline">
+          <span>✨</span>
+          <span class="dyn-company-tagline">"Your Journey, Our Responsibility — Explore Tamil Nadu With Comfort."</span>
+        </div>
+        <h1 class="hero-title">Book Your Perfect Tourist Van Across Tamil Nadu</h1>
+        <p class="hero-subtitle">Comfortable group travel, reliable service, and memorable journeys from your doorstep to your destination.</p>
+        <div class="hero-cta-group">
+          <a href="#vehicles" class="btn btn-primary btn-lg">Explore Our Vehicles</a>
+          <button class="btn btn-outline-white btn-lg" onclick="openBookingModal()">Get a Free Quote</button>
+        </div>
+      </div>
+
+      <!-- Quick Booking Bar Widget -->
+      <div class="quick-booking-card">
+        <div class="quick-booking-grid">
+          <div class="form-group">
+            <label class="form-label">📍 Pickup Location</label>
+            <input type="text" id="hero-pickup" class="form-input tn-location-input" placeholder="e.g. Chennai Central" autocomplete="off" value="Chennai">
+          </div>
+          <div class="form-group">
+            <label class="form-label">🏁 Destination</label>
+            <input type="text" id="hero-dest" class="form-input tn-location-input" placeholder="e.g. Ooty or Madurai" autocomplete="off" value="Ooty">
+          </div>
+          <div class="form-group">
+            <label class="form-label">📅 Travel Date</label>
+            <input type="date" id="hero-date" class="form-input" min="2026-10-24">
+          </div>
+          <div class="form-group">
+            <label class="form-label">🔄 Trip Type</label>
+            <select id="hero-trip-type" class="form-select">
+              <option value="Round-Trip">Round-Trip</option>
+              <option value="One-Way">One-Way Drop</option>
+              <option value="Local Sightseeing">Local Sightseeing</option>
+              <option value="Multi-Day Outstation">Multi-Day Tour</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">👥 Passengers</label>
+            <select id="hero-pax" class="form-select">
+              <option value="12">Up to 12 Pax</option>
+              <option value="18" selected>13 - 18 Pax</option>
+              <option value="19">19 Pax</option>
+              <option value="21">20 - 21 Pax</option>
+              <option value="22">22 Pax</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🚐 Preferred Van</label>
+            <select id="hero-vehicle" class="form-select vehicle-select-dropdown">
+              <option value="18-Seater Luxury Tourist Van">18-Seater Van</option>
+              <option value="19-Seater Executive Tourist Van">19-Seater Van</option>
+              <option value="21-Seater Grand Tourist Van">21-Seater Van</option>
+              <option value="22-Seater Super Deluxe Van">22-Seater Van</option>
+            </select>
+          </div>
+          <div>
+            <button class="btn btn-primary" id="btn-hero-quote" style="width: 100%; height: 46px;">
+              Get Instant Quote ➔
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Our Vehicles Section (18, 19, 21, 22-Seater) -->
+  <section class="section-padding bg-slate" id="vehicles">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Premium Tourist Fleet</span>
+        <h2 class="section-title">Our Tourist Van Categories</h2>
+        <p class="section-subtitle mx-auto">
+          Meticulously maintained, fully air-conditioned tourist vans with pushback seats, individual charging ports, and dedicated luggage boots.
+        </p>
+      </div>
+
+      <div class="fleet-grid" id="vehicles-grid">
+        <!-- Rendered dynamically via JS from /api/vehicles -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Popular Destinations Across Tamil Nadu -->
+  <section class="section-padding" id="destinations">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Explore Tamil Nadu</span>
+        <h2 class="section-title">Popular Destinations Across Tamil Nadu</h2>
+        <p class="section-subtitle mx-auto">
+          From ancient Chola temples and UNESCO heritage monuments to serene Nilgiri tea hills and coastal shores. Seamless door-to-door transport across all 38 districts.
+        </p>
+      </div>
+
+      <!-- Regional Tabs -->
+      <div class="region-tabs-nav">
+        <button class="region-tab-btn active" data-region="All">All Destinations</button>
+        <button class="region-tab-btn" data-region="North">North Tamil Nadu</button>
+        <button class="region-tab-btn" data-region="Kongu">West / Kongu</button>
+        <button class="region-tab-btn" data-region="Hills">Hills & Western Ghats</button>
+        <button class="region-tab-btn" data-region="Delta">Central & Delta</button>
+        <button class="region-tab-btn" data-region="South">South Tamil Nadu</button>
+      </div>
+
+      <div class="destinations-grid" id="destinations-grid">
+        <!-- Rendered dynamically via JS from /api/destinations -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Tour Packages Section -->
+  <section class="section-padding bg-slate" id="packages">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Handcrafted Itineraries</span>
+        <h2 class="section-title">Popular Tamil Nadu Tour Packages</h2>
+        <p class="section-subtitle mx-auto">
+          Pre-designed holiday and pilgrimage circuits with dedicated van and seasoned chauffeur. Customizable to your family or group's schedule.
+        </p>
+      </div>
+
+      <div class="packages-grid" id="packages-grid">
+        <!-- Rendered dynamically via JS from /api/packages -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Interactive Fare Calculator -->
+  <section class="section-padding" id="fare-calculator">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Transparent Quotations</span>
+        <h2 class="section-title">Instant Fare Estimator</h2>
+        <p class="section-subtitle mx-auto">
+          Check realistic travel distances and estimated rates for your trip anywhere in Tamil Nadu. No hidden surprises.
+        </p>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-grid">
+          <!-- Inputs -->
+          <div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label">📍 Starting Point</label>
+                <input type="text" id="calc-pickup" class="form-input tn-location-input" value="Chennai" autocomplete="off">
+              </div>
+              <div class="form-group">
+                <label class="form-label">🏁 Destination</label>
+                <input type="text" id="calc-drop" class="form-input tn-location-input" value="Ooty" autocomplete="off">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label">🔄 Trip Type</label>
+                <select id="calc-trip-type" class="form-select">
+                  <option value="Round-Trip" selected>Round-Trip Outstation</option>
+                  <option value="One-Way">One-Way Drop</option>
+                  <option value="Local Sightseeing">Local Sightseeing (8h/80km)</option>
+                  <option value="Multi-Day Outstation">Multi-Day Tour</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">🗓️ Number of Days</label>
+                <input type="number" id="calc-days" class="form-input" min="1" max="15" value="3">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label">🚐 Vehicle Category</label>
+              <select id="calc-vehicle" class="form-select">
+                <!-- Populated via fare-calculator.js -->
+              </select>
+            </div>
+
+            <div style="font-size: 0.85rem; color: #64748b; background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+              💡 <strong>How it works:</strong> Fuel and chauffeur allowance are included in the estimate. Interstate permits, hill station green entry tax, parking, and toll fees are payable at actual counters.
+            </div>
+          </div>
+
+          <!-- Breakdown Output Card -->
+          <div class="calc-breakdown-box">
+            <div>
+              <h3 style="font-size: 1.15rem; color: var(--primary-navy); margin-bottom: 16px;">Estimated Fare Summary</h3>
+              <div class="breakdown-row">
+                <span>Est. One-Way Distance:</span>
+                <strong id="calc-res-dist">540 km</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Total Billable Distance:</span>
+                <strong id="calc-res-billable-km">1,080 km</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Base Rate:</span>
+                <strong id="calc-res-km-rate">₹22/km</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Vehicle & Fuel Charges:</span>
+                <strong id="calc-res-base-fare">₹23,760</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Driver Allowance (Bata):</span>
+                <strong id="calc-res-driver-bata">₹1,800 (3 days)</strong>
+              </div>
+              <div class="breakdown-row total">
+                <span>Estimated Total:</span>
+                <span id="calc-res-total" style="color: var(--accent-teal-dark);">₹25,560*</span>
+              </div>
+              <p class="policy-notice">
+                *Toll plaza, parking, and hill station permits are payable at actuals. Final quotation provided upon review.
+              </p>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+              <button class="btn btn-whatsapp" id="calc-btn-whatsapp">
+                💬 Request This Estimate on WhatsApp
+              </button>
+              <button class="btn btn-primary" onclick="openBookingModal()">
+                📝 Proceed to Booking Enquiry
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Why Choose Us -->
+  <section class="section-padding bg-slate" id="why-us">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Peace of Mind</span>
+        <h2 class="section-title">Why Travel With Us?</h2>
+        <p class="section-subtitle mx-auto">
+          Dedicated to providing safe, comfortable, and stress-free group transportation throughout the state of Tamil Nadu.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🚐</div>
+          <h3 class="feature-title">Comfortable Tourist Vehicles</h3>
+          <p class="feature-desc">Plush pushback reclining seats, dual chilled AC, ambient lighting, and ample luggage boot space.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">👨‍✈️</div>
+          <h3 class="feature-title">Experienced Drivers</h3>
+          <p class="feature-desc">Courteous, verified chauffeurs skilled with Western Ghat hairpin bends and heritage temple corridors.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🗺️</div>
+          <h3 class="feature-title">Tamil Nadu-Wide Coverage</h3>
+          <p class="feature-desc">Pickup and drop available across all 38 districts, towns, villages, railway junctions, and airports.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🔄</div>
+          <h3 class="feature-title">Flexible Travel Options</h3>
+          <p class="feature-desc">Convenient one-way drops, round-trip excursions, city sightseeing, and multi-day custom tours.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">📑</div>
+          <h3 class="feature-title">Transparent Quotations</h3>
+          <p class="feature-desc">Clear per-km rates with zero hidden surprises. You know exactly what is included before confirmation.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">💬</div>
+          <h3 class="feature-title">Convenient Booking Support</h3>
+          <p class="feature-desc">Instant quotes and real-time coordination directly over WhatsApp and phone around the clock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. How Booking Works -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Simple 4-Step Process</span>
+        <h2 class="section-title">How Booking Works</h2>
+        <p class="section-subtitle mx-auto">
+          Arranging a comfortable group trip across Tamil Nadu is quick and hassle-free.
+        </p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Select Route</h3>
+          <p style="font-size: 0.88rem; color: #64748b;">Specify your pickup location and destination anywhere in Tamil Nadu.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Choose Van</h3>
+          <p style="font-size: 0.88rem; color: #64748b;">Select your travel date and preferred 18, 19, 21, or 22-seater van category.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Receive Quote</h3>
+          <p style="font-size: 0.88rem; color: #64748b;">Get an itemized quotation from our team on WhatsApp or phone.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Confirm Trip</h3>
+          <p style="font-size: 0.88rem; color: #64748b;">Review trip details and confirm your van with our authorized representative.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Testimonials Section (Clearly marked development sample content) -->
+  <section class="section-padding bg-slate">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Customer Experiences</span>
+        <h2 class="section-title">What Travelers Say</h2>
+        <p class="section-subtitle mx-auto">
+          <small style="color: #94a3b8; font-style: italic;">(Sample customer feedback collected during beta testing)</small>
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars-row">★★★★★</div>
+          <p class="testimonial-text">"We booked a 21-seater van for our family temple trip from Chennai to Madurai and Rameswaram. Chauffeur Kumar was exceptionally courteous, navigated highway tolls smoothly, and the AC was chilling throughout."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SR</div>
+            <div>
+              <div class="author-name">Senthil Raghavan</div>
+              <div class="author-route">Chennai ➔ Madurai & Rameswaram Family Trip</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars-row">★★★★★</div>
+          <p class="testimonial-text">"Our college alumni group of 18 traveled from Coimbatore to Ooty. The van had plenty of boot space for our heavy luggage and the driver handled all 36 hairpin bends with ease. Transparent billing."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PK</div>
+            <div>
+              <div class="author-name">Praveen Kumar</div>
+              <div class="author-route">Coimbatore ➔ Ooty Weekend Tour</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars-row">★★★★★</div>
+          <p class="testimonial-text">"Arranged a 22-seater van for wedding guests moving between Tiruchirappalli and Thanjavur. Punctual on-time pickup, sparkling clean seats, and smooth coordination via WhatsApp."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div>
+              <div class="author-name">Anitha Meenakshi</div>
+              <div class="author-route">Trichy ➔ Thanjavur Wedding Group Transport</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Final Call to Action -->
+  <section class="final-cta-section">
+    <div class="container">
+      <h2 class="final-cta-title">Planning Your Next Group Trip?</h2>
+      <p class="final-cta-subtitle">Tell us where you want to go, and we will help you choose the right tourist van.</p>
+      <div class="final-cta-btns">
+        <button class="btn btn-primary btn-lg" onclick="openBookingModal()">Request a Quote</button>
+        <button class="btn btn-whatsapp btn-lg" id="floating-wa-btn-cta" onclick="window.open('https://wa.me/919444012345?text=Hello%20Tamil%20Nadu%20Van%20Travels!%20I%20would%20like%20to%20plan%20a%20group%20trip.', '_blank')">
+          💬 Chat on WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title dyn-company-name">Tamil Nadu Van Travels</div>
+          <p class="footer-desc">
+            Your trusted travel companion for tourist van rentals, pilgrim circuits, family holidays, weddings, and corporate outings across all districts of Tamil Nadu.
+          </p>
+          <p style="font-size: 0.82rem; color: #cbd5e1; margin-bottom: 6px;">
+            🏢 <strong class="dyn-company-address">No. 45, GST Road, Guindy, Chennai - 600032</strong>
+          </p>
+          <p style="font-size: 0.82rem; color: #cbd5e1;">
+            📞 <strong class="dyn-company-phone">+91 94440 12345</strong> &nbsp;|&nbsp; ✉️ <span class="dyn-company-email">booking@tamilnaduvanstravels.com</span>
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Vehicle Fleet</h4>
+          <ul class="footer-links">
+            <li><a href="#vehicles" onclick="openBookingModalWithVehicle('18-Seater Luxury Tourist Van')">18-Seater Tourist Van</a></li>
+            <li><a href="#vehicles" onclick="openBookingModalWithVehicle('19-Seater Executive Tourist Van')">19-Seater Tourist Van</a></li>
+            <li><a href="#vehicles" onclick="openBookingModalWithVehicle('21-Seater Grand Tourist Van')">21-Seater Tourist Van</a></li>
+            <li><a href="#vehicles" onclick="openBookingModalWithVehicle('22-Seater Super Deluxe Van')">22-Seater Tourist Van</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Popular Routes</h4>
+          <ul class="footer-links">
+            <li><a href="/routes/chennai-to-ooty">Chennai to Ooty Van</a></li>
+            <li><a href="/routes/chennai-to-mahabalipuram">Chennai to Mahabalipuram</a></li>
+            <li><a href="/routes/coimbatore-to-ooty">Coimbatore to Ooty</a></li>
+            <li><a href="/routes/madurai-to-rameswaram">Madurai to Rameswaram</a></li>
+            <li><a href="/routes/trichy-to-thanjavur">Trichy to Thanjavur</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">District Coverage (All 38)</h4>
+          <p style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 8px;">Doorstep pickup & drops in every district:</p>
+          <div class="footer-districts-list">
+            <span class="district-pill">Chennai</span>
+            <span class="district-pill">Coimbatore</span>
+            <span class="district-pill">Madurai</span>
+            <span class="district-pill">Trichy</span>
+            <span class="district-pill">Salem</span>
+            <span class="district-pill">Tirunelveli</span>
+            <span class="district-pill">Nilgiris</span>
+            <span class="district-pill">Dindigul</span>
+            <span class="district-pill">Kanyakumari</span>
+            <span class="district-pill">Thanjavur</span>
+            <span class="district-pill">Vellore</span>
+            <span class="district-pill">+27 More Districts</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="cur-year">2026</span> <span class="dyn-company-name">Tamil Nadu Van Travels</span>. All rights reserved.
+        </div>
+        <div>
+          <a href="/admin" style="color: #64748b; text-decoration: none; margin-right: 14px;">Admin Portal</a>
+          <a href="#" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action -->
+  <a href="#" class="floating-whatsapp" id="floating-wa-btn" title="Chat on WhatsApp">
+    <div class="whatsapp-tooltip">Chat with Booking Expert</div>
+    <div class="whatsapp-bubble">💬</div>
+  </a>
+
+  <!-- ==========================================================================
+       MODALS: Booking Enquiry, Confirmation, Tracking, Vehicle Details, Packages
+       ========================================================================== -->
+
+  <!-- 1. Booking Enquiry Modal -->
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">🚐 Book Your Tourist Van</h3>
+        <button class="modal-close-btn" onclick="closeModal('booking-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 18px;">
+          Submit your travel requirements to receive a fast quotation. No advance payment required for enquiry submission.
+        </p>
+
+        <form id="booking-form">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="book-name" class="form-input" placeholder="e.g. R. Karthikeyan" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number *</label>
+              <input type="tel" id="book-mobile" class="form-input" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div class="form-group">
+              <label class="form-label">WhatsApp Number</label>
+              <input type="tel" id="book-wa" class="form-input" placeholder="Same as mobile or different">
+            </div>
+            <div style="display: flex; align-items: center; padding-top: 24px;">
+              <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="checkbox" id="book-same-wa" checked> Same as Mobile Number
+              </label>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div class="form-group">
+              <label class="form-label">📍 Pickup Location / District *</label>
+              <input type="text" id="book-pickup" class="form-input tn-location-input" placeholder="e.g. Chennai Airport, Koyambedu..." autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">🏁 Destination *</label>
+              <input type="text" id="book-dest" class="form-input tn-location-input" placeholder="e.g. Ooty, Madurai, Kodaikanal..." autocomplete="off" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div class="form-group">
+              <label class="form-label">📅 Pickup Date *</label>
+              <input type="date" id="book-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">⏰ Pickup Time</label>
+              <input type="text" id="book-time" class="form-input" placeholder="06:00 AM" value="07:00 AM">
+            </div>
+            <div class="form-group">
+              <label class="form-label">🔄 Trip Type</label>
+              <select id="book-trip-type" class="form-select">
+                <option value="Round-Trip" selected>Round-Trip</option>
+                <option value="One-Way">One-Way Drop</option>
+                <option value="Local Sightseeing">Local Sightseeing</option>
+                <option value="Multi-Day Outstation">Multi-Day Outstation</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" id="return-date-group" style="margin-bottom: 14px;">
+            <label class="form-label">📅 Return Date (for Round-Trip)</label>
+            <input type="date" id="book-return-date" class="form-input">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 14px; margin-bottom: 14px;">
+            <div class="form-group">
+              <label class="form-label">👥 Passengers *</label>
+              <input type="number" id="book-passengers" class="form-input" min="1" max="25" value="15" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">🚐 Preferred Vehicle *</label>
+              <select id="book-vehicle" class="form-select vehicle-select-dropdown" required>
+                <!-- Filled dynamically via JS -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">❄️ AC Preference</label>
+              <select id="book-ac" class="form-select">
+                <option value="AC" selected>AC (Recommended)</option>
+                <option value="Non-AC">Non-AC</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label class="form-label">Special Instructions or Stopovers</label>
+            <textarea id="book-instructions" class="form-input" style="height: 70px; padding: 10px;" placeholder="e.g. Need roof luggage rack, senior citizen accessible seats, stopover at Temple..."></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button type="button" class="btn btn-outline" onclick="closeModal('booking-modal')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Booking Enquiry ➔</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Booking Confirmation Modal -->
+  <div class="modal-overlay" id="confirmation-modal">
+    <div class="modal-container" style="max-width: 520px;">
+      <div class="modal-header" style="background: #f0fdfa;">
+        <h3 class="modal-title" style="color: #0f766e;">✅ Enquiry Registered!</h3>
+        <button class="modal-close-btn" onclick="closeModal('confirmation-modal')">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+        <h4 style="font-size: 1.3rem; margin-bottom: 8px;">Thank You for Choosing Us!</h4>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 16px;">
+          Your unique enquiry reference number is:
+        </p>
+        <div style="background: #0b1f3a; color: #5eead4; font-size: 1.5rem; font-weight: 800; padding: 12px; border-radius: 8px; letter-spacing: 1.5px; margin-bottom: 18px;" id="conf-ref-number">
+          TNV-2026-XXXX
+        </div>
+
+        <div id="conf-details" style="text-align: left; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; font-size: 0.88rem; margin-bottom: 24px;">
+          <!-- Injected via app.js -->
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="#" class="btn btn-whatsapp" id="conf-wa-btn">
+            💬 Send Details to WhatsApp Representative Now
+          </a>
+          <button class="btn btn-outline" onclick="closeModal('confirmation-modal')">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Track Booking Modal -->
+  <div class="modal-overlay" id="tracking-modal">
+    <div class="modal-container" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">🔍 Track Your Booking Status</h3>
+        <button class="modal-close-btn" onclick="closeModal('tracking-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 16px;">
+          Enter your unique enquiry reference number (e.g. TNV-2026-4821) to view status and confirmed quotation.
+        </p>
+        <form id="tracking-form">
+          <div class="form-group" style="margin-bottom: 16px;">
+            <input type="text" id="track-ref-input" class="form-input" placeholder="TNV-2026-XXXX" required style="text-transform: uppercase;">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Check Status</button>
+        </form>
+        <div id="tracking-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Vehicle Details Modal -->
+  <div class="modal-overlay" id="vehicle-details-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="veh-modal-title">Vehicle Specifications</h3>
+        <button class="modal-close-btn" onclick="closeModal('vehicle-details-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="veh-modal-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Tour Package Details Modal -->
+  <div class="modal-overlay" id="package-details-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="pkg-modal-title">Tour Itinerary Details</h3>
+        <button class="modal-close-btn" onclick="closeModal('package-details-modal')">&times;</button>
+      </div>
+      <div class="modal-body" id="pkg-modal-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/data-districts.js"></script>
+  <script src="/js/fare-calculator.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
