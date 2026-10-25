@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourist Van Rental Route — Tamil Nadu Van Travels</title>
+  <meta name="description" content="Book 18, 19, 21, and 22-seater tourist vans with professional chauffeurs and transparent rates across Tamil Nadu.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Notice Bar -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-inner">
+      <div>
+        <span>📍 Direct Tourist Van Service Across All 38 Districts of Tamil Nadu</span>
+      </div>
+      <div class="top-notice-contact">
+        <a href="tel:+919444012345" class="dyn-company-phone">📞 +91 94440 12345</a>
+        <a href="/" style="color: #5eead4;">🏠 Home</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="/" class="brand-logo">
+        <div class="brand-icon">🚐</div>
+        <div>
+          <div class="brand-title dyn-company-name">Tamil Nadu Van Travels</div>
+          <div class="brand-sub">Route Booking Portal</div>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="/" class="btn btn-outline btn-sm">All Packages</a>
+        <a href="#route-book" class="btn btn-primary btn-sm">Book This Route</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Route Hero Section -->
+  <section class="hero-section" style="padding: 60px 0 80px 0;">
+    <div class="container text-center">
+      <span class="section-tag" style="background: rgba(255,255,255,0.2); color: #fff; border: none;">Specialized Route</span>
+      <h1 class="hero-title" id="route-page-title" style="margin-top: 10px;">Tourist Van Rental in Tamil Nadu</h1>
+      <p class="hero-subtitle mx-auto" id="route-page-sub">
+        Premium 18, 19, 21, and 22-seater pushback AC vans with seasoned highway drivers.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px; margin-top: 20px;">
+        <a href="#route-book" class="btn btn-primary btn-lg">Instant Route Quotation</a>
+        <a href="/" class="btn btn-outline-white btn-lg">Back to Main Website</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Route Details & Fleet Recommendations -->
+  <main class="container section-padding">
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: start;">
+      
+      <!-- Route Overview Content -->
+      <div>
+        <h2 style="font-size: 1.8rem; margin-bottom: 16px;" id="route-detail-heading">Route Highlights & Vehicle Suitability</h2>
+        <p style="font-size: 1rem; color: #475569; line-height: 1.7; margin-bottom: 24px;" id="route-detail-desc">
+          Enjoy smooth door-to-door group travel with dedicated tourist vans. Our vehicles are equipped with dual chilled air conditioning, individual mobile charging ports, pushback luxury seats, and ample luggage carriers for hill station or heritage trips.
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 14px; color: #0b1f3a;">What's Included in Your Trip:</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.9rem; color: #334155;">
+            <div>✓ Sanitized Pushback AC Van</div>
+            <div>✓ Experienced Highway Driver</div>
+            <div>✓ Chauffeur Allowance (Bata)</div>
+            <div>✓ Fuel & Vehicle Maintenance</div>
+            <div>✓ Luggage Boot & Roof Carrier</div>
+            <div>✓ 24/7 Breakdown Assistance</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.3rem; margin-bottom: 16px;">Recommended Vehicles for this Route</h3>
+        <div id="route-vehicles-list" class="fleet-grid" style="grid-template-columns: 1fr 1fr; gap: 18px;">
+          <!-- Loaded via JS -->
+        </div>
+      </div>
+
+      <!-- Quick Route Booking Form -->
+      <div id="route-book" style="background: #ffffff; border-radius: 16px; padding: 28px; box-shadow: var(--shadow-xl); border: 1px solid #e2e8f0; position: sticky; top: 100px;">
+        <h3 style="font-size: 1.3rem; margin-bottom: 6px;">Request Route Quotation</h3>
+        <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 18px;">Get confirmed pricing for this route directly on WhatsApp.</p>
+
+        <form id="route-booking-form">
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="route-cust-name" class="form-input" placeholder="Your Name" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label">Mobile Number *</label>
+            <input type="tel" id="route-cust-mobile" class="form-input" placeholder="10-digit mobile" pattern="[0-9]{10}" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label">Pickup Location *</label>
+            <input type="text" id="route-pickup" class="form-input" required>
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label">Destination *</label>
+            <input type="text" id="route-drop" class="form-input" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+            <div class="form-group">
+              <label class="form-label">Travel Date *</label>
+              <input type="date" id="route-date" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Passengers</label>
+              <input type="number" id="route-pax" class="form-input" value="16" min="1" max="25">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label class="form-label">Preferred Van</label>
+            <select id="route-vehicle" class="form-select vehicle-select-dropdown">
+              <option value="18-Seater Luxury Tourist Van">18-Seater Luxury Van</option>
+              <option value="19-Seater Executive Tourist Van">19-Seater Executive Van</option>
+              <option value="21-Seater Grand Tourist Van">21-Seater Grand Van</option>
+              <option value="22-Seater Super Deluxe Van">22-Seater Deluxe Van</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; height: 46px;">
+            Submit Route Enquiry ➔
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p style="margin-bottom: 8px;">&copy; 2026 Tamil Nadu Van Travels. Serving all 38 districts of Tamil Nadu.</p>
+      <a href="/" style="color: #5eead4; text-decoration: none;">← Return to Main Homepage</a>
+    </div>
+  </footer>
+
+  <script src="/js/data-districts.js"></script>
+  <script>
+    // Route page dynamic controller
+    document.addEventListener('DOMContentLoaded', async () => {
+      const pathParts = window.location.pathname.split('/');
+      const slug = pathParts[pathParts.length - 1] || 'chennai-to-ooty';
+      
+      let origin = 'Chennai';
+      let dest = 'Ooty';
+
+      if (slug.includes('-to-')) {
+        const parts = slug.split('-to-');
+        origin = parts[0].replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        dest = parts[1].replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      }
+
+      document.getElementById('route-page-title').textContent = `${origin} to ${dest} Tourist Van Rental`;
+      document.getElementById('route-page-sub').textContent = `Book comfortable 18, 19, 21, or 22-seater tourist vans for your group trip from ${origin} to ${dest}.`;
+      document.getElementById('route-pickup').value = origin;
+      document.getElementById('route-drop').value = dest;
+
+      // Fetch vehicles to render preview
+      try {
+        const res = await fetch('/api/vehicles');
+        const data = await res.json();
+        if (data.success) {
+          const list = document.getElementById('route-vehicles-list');
+          list.innerHTML = data.vehicles.slice(0, 2).map(v => `
+            <div style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+              <img src="${v.image_url}" style="width:100%; height:130px; object-fit:cover;">
+              <div style="padding:14px;">
+                <h4 style="font-size:1rem; margin-bottom:4px;">${v.name}</h4>
+                <div style="font-size:0.85rem; color:#0d9488; font-weight:bold;">₹${v.price_per_km}/km</div>
+                <div style="font-size:0.78rem; color:#64748b; margin-top:4px;">${v.capacity_details}</div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {}
+
+      // Form submit
+      document.getElementById('route-booking-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          customer_name: document.getElementById('route-cust-name').value.trim(),
+          mobile: document.getElementById('route-cust-mobile').value.trim(),
+          pickup_location: document.getElementById('route-pickup').value.trim(),
+          destination: document.getElementById('route-drop').value.trim(),
+          pickup_date: document.getElementById('route-date').value,
+          passengers: parseInt(document.getElementById('route-pax').value, 10) || 16,
+          vehicle_type: document.getElementById('route-vehicle').value,
+          trip_type: 'Round-Trip'
+        };
+
+        const res = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const d = await res.json();
+        if (d.success) {
+          alert(`Enquiry Registered! Reference: ${d.ref_number}. Opening WhatsApp now...`);
+          if (d.whatsapp_url) window.location.href = d.whatsapp_url;
+        } else {
+          alert('Error: ' + d.error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
